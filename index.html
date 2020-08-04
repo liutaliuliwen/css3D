@@ -34,23 +34,21 @@
        
       }
 
-      .page1 {
+      /* .page1 {
         z-index: 10;
-      }
+      } */
 
       .page.flip {
         transform: rotateY(-180deg);
       }
 
-      .page2 {
-        z-index: 9;
-        /* transform: rotateY(45deg); */
+      /* .page2 {
+        z-index: 9;     
       }
 
       .page3 {
-        z-index: 8;
-        /* transform: rotateY(45deg); */
-      }
+        z-index: 8;      
+      } */
 
       /* .page2 {
         z-index: 9;
@@ -123,36 +121,51 @@
     </div>
 
     <script>
+      const pages = document.querySelectorAll(".page");
+      const PAGE_Z_INDEX = 10;
+      pages.forEach((page,index) => {
+        page.style.zIndex = PAGE_Z_INDEX - index;
+      })
       const page1 = document.querySelector(".page1");
       page1.addEventListener("click", (e) => {
         console.log(e);
-        
-        if(e.target.closest(".front")){       
-        page1.style.zIndex = 10;
-       }else {
-        page1.style.zIndex = 11;
-       }
+       
+      //   if(e.target.closest(".front")){       
+      //   page1.style.zIndex = 10;
+      //  }else {
+      //   page1.style.zIndex = 11;
+      //  }
+        const indexArray = [].map.call(pages, page =>  +page.style.zIndex);
+        const maxZIndex = Math.max(...indexArray);
+        page1.style.zIndex =  maxZIndex + 1;
        page1.classList.toggle("flip");
       });
       const page2 = document.querySelector(".page2");
       page2.addEventListener("click", (e) => {
-        console.log(e.path);
+        // console.log(e.path);
+        const indexArray = [].map.call(pages, page =>  +page.style.zIndex);
+        const maxZIndex = Math.max(...indexArray);
+        page2.style.zIndex =  maxZIndex + 1;
         page2.classList.toggle("flip");
-       if(e.target.closest(".front")){       
-        page2.style.zIndex = 10;
-       }else {
-        page2.style.zIndex = 11;
-       }
+      
+      //  if(e.target.closest(".front")){       
+      //   page2.style.zIndex = 10;
+      //  }else {
+      //   page2.style.zIndex = 11;
+      //  }
      
       });
       const page3 = document.querySelector(".page3");
       page3.addEventListener("click", (e) => {
+        const indexArray = [].map.call(pages, page =>  +page.style.zIndex);
+        const maxZIndex = Math.max(...indexArray);
+        page3.style.zIndex =  maxZIndex + 1;
         page3.classList.toggle("flip");
-        if(e.target.closest(".front")){       
-        page3.style.zIndex = 10;
-       }else {
-        page3.style.zIndex = 11;
-       }
+      //   if(e.target.closest(".front")){       
+      //   page3.style.zIndex = 10;
+      //  }else {
+      //   page3.style.zIndex = 11;
+      //  }
       
       });
       //   const page2 = document.querySelector(".page2");
