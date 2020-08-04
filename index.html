@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .book-wrapper {
+        width: 540px;
+        height: 770px;
+        position: relative;
+        margin: 100px auto;
+      }
+      .book {
+        perspective: 2800px;
+        width: 100%;
+        height: 100%;
+        
+      }
+      .page {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        transform-style: preserve-3d;
+        transform-origin: left;
+        transition: transform 1s;
+        /* overflow: hidden; */
+       
+      }
+
+      .page1 {
+        z-index: 10;
+      }
+
+      .page.flip {
+        transform: rotateY(-180deg);
+      }
+
+      .page2 {
+        z-index: 9;
+        /* transform: rotateY(45deg); */
+      }
+
+      .page3 {
+        z-index: 8;
+        /* transform: rotateY(45deg); */
+      }
+
+      /* .page2 {
+        z-index: 9;
+        transition: transform 1s;
+        transform-origin: left;
+        background-color: cadetblue;
+      }
+      .page3 {
+        z-index: 8;
+        transition: transform 1s;
+        transform-origin: left;
+        background-color: cadetblue;
+      }
+      .page4 {
+        z-index: 7;
+        transition: transform 1s;
+        transform-origin: left;
+        background-color: cadetblue;
+      }
+      .page5 {
+        z-index: 6;
+        transition: transform 1s;
+        transform-origin: left;
+        background-color: cadetblue;
+      } */
+
+      .front,
+      .back {
+        backface-visibility: hidden;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        /* transform-origin: left;    */
+      }
+      .page .back {
+        transform: rotateY(180deg);
+        /* transform-origin: right; */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <button id="open">旋转</button> -->
+    <div class="book-wrapper">
+      <div class="book">
+        <div class="page page1">
+          <div class="front">
+            <img src="./images/p1.png" class="" alt="" />
+          </div>
+          <div class="back">
+            <img src="./images/p2.png" alt="" />
+          </div>
+        </div>
+        <div class="page page2">
+          <div class="front">
+            <img src="./images/p3.png" alt="" />
+          </div>
+          <div class="back">
+            <img src="./images/p4.png" alt="" />
+          </div>
+        </div>
+        <div class="page page3">
+          <div class="front">
+            <img src="./images/p5.png" alt="" />
+          </div>
+          <div class="back">
+            <img src="./images/p6.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const page1 = document.querySelector(".page1");
+      page1.addEventListener("click", (e) => {
+        console.log(e);
+        
+        if(e.target.closest(".front")){       
+        page1.style.zIndex = 10;
+       }else {
+        page1.style.zIndex = 11;
+       }
+       page1.classList.toggle("flip");
+      });
+      const page2 = document.querySelector(".page2");
+      page2.addEventListener("click", (e) => {
+        console.log(e.path);
+        page2.classList.toggle("flip");
+       if(e.target.closest(".front")){       
+        page2.style.zIndex = 10;
+       }else {
+        page2.style.zIndex = 11;
+       }
+     
+      });
+      const page3 = document.querySelector(".page3");
+      page3.addEventListener("click", (e) => {
+        page3.classList.toggle("flip");
+        if(e.target.closest(".front")){       
+        page3.style.zIndex = 10;
+       }else {
+        page3.style.zIndex = 11;
+       }
+      
+      });
+      //   const page2 = document.querySelector(".page2");
+      //   page2.addEventListener("click", () => {
+      //     page2.classList.toggle("flip");
+      //   });
+      //   const page3 = document.querySelector(".page3");
+      //   page3.addEventListener("click", () => {
+      //     page3.classList.toggle("flip");
+      //   });
+      //   const page4 = document.querySelector(".page4");
+      //   page4.addEventListener("click", () => {
+      //     page4.classList.toggle("flip");
+      //   });
+      //   const page5 = document.querySelector(".page5");
+      //   page5.addEventListener("click", () => {
+      //     page5.classList.toggle("flip");
+      //   });
+    </script>
+  </body>
+</html>
